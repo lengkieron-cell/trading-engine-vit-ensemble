@@ -17,19 +17,31 @@ from scipy.stats import entropy
 # ─────────────────────────────────────────────────────────────
 # 1. CONFIG  ← only section you ever need to touch
 # ─────────────────────────────────────────────────────────────
-JUDGE_MODEL_PATH     = r"C:\Users\Kylek\Downloads\Kieron Stuff\Trader-2026\MODELS\judge_model.json"
-LSTM_MODEL_PATH      = r"C:\Users\Kylek\Downloads\Kieron Stuff\Trader-2026\MODELS\lstm_model.pt"
-LSTM_SCALER_PATH     = r"C:\Users\Kylek\Downloads\Kieron Stuff\Trader-2026\MODELS\lstm_scaler.json"
-JUDGE_THRESHOLD      = 0.51   # updated to match new meta-Judge optimal threshold
-LSTM_SEQ_LEN         = 10     # must match train_lstm.py
+# 1. Anchor everything to the script's current location
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-BEST_MODEL           = r"C:\Users\Kylek\Downloads\Kieron Stuff\Trader-2026\MODELS\best.pth"
+# 2. Define the MODELS directory relative to the script
+MODELS_DIR = os.path.join(BASE_DIR, "MODELS")
+
+# 3. Dynamic Model Paths
+JUDGE_MODEL_PATH     = os.path.join(MODELS_DIR, "judge_model.json")
+LSTM_MODEL_PATH      = os.path.join(MODELS_DIR, "lstm_model.pt")
+LSTM_SCALER_PATH     = os.path.join(MODELS_DIR, "lstm_scaler.json")
+BEST_MODEL           = os.path.join(MODELS_DIR, "best.pth")
+
+# 4. Logic Settings (Keep as is)
+JUDGE_THRESHOLD      = 0.51   
+LSTM_SEQ_LEN         = 10     
 CONFIDENCE_THRESHOLD = 0.65
 TOP_N                = 5
 LOOKBACK             = 100
 FORECAST             = 15
-OUTPUT_DIR           = r"C:\Users\Kylek\Downloads\Kieron Stuff\Trader-2026"
+
+# 5. Output and Logging
+OUTPUT_DIR           = os.path.join(BASE_DIR, "outputs")
 LOGBOOK_PATH         = os.path.join(OUTPUT_DIR, "LOGBOOK.txt")
+
+# Ensure the output folder exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Auto-Auditor settings
