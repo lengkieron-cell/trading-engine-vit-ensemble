@@ -7,12 +7,18 @@ from PIL import Image
 # ─────────────────────────────────────────────────────────────
 # 1. SETUP
 # ─────────────────────────────────────────────────────────────
-BASE_DIR   = r"C:\Users\Kylek\Downloads\Kieron Stuff\Trader-2026"
+# 1. Dynamically find the project folder
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Define training folders relative to the script location
 TRAIN_WIN  = os.path.join(BASE_DIR, 'train', 'win')
 TRAIN_LOSS = os.path.join(BASE_DIR, 'train', 'loss')
 
+# 3. Ensure the folders exist so the script doesn't crash on first run
 os.makedirs(TRAIN_WIN,  exist_ok=True)
 os.makedirs(TRAIN_LOSS, exist_ok=True)
+
+
 
 # ─────────────────────────────────────────────────────────────
 # 2. CONFIG
