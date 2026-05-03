@@ -26,10 +26,15 @@ from sklearn.preprocessing import LabelEncoder
 # ─────────────────────────────────────────────────────────────
 # 1. CONFIG — update paths to match your machine
 # ─────────────────────────────────────────────────────────────
-BASE_DIR        = r"C:\Users\Kylek\Downloads\Kieron Stuff\Trader-2026"
+# Use the directory where the script is currently located
+BASE_DIR        = os.path.dirname(os.path.abspath(__file__))
+
+# All other paths now build off the local project folder
 SCORED_CSV      = os.path.join(BASE_DIR, "fft_judge_scored.csv")
 JUDGE_MODEL     = os.path.join(BASE_DIR, "MODELS", "judge_model.json")
 OUTPUT_DIR      = os.path.join(BASE_DIR, "backtest_results")
+
+# This creates the folder inside your project directory automatically
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Sweep ranges — edit if you want finer/coarser steps
