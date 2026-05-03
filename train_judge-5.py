@@ -15,10 +15,15 @@ import xgboost as xgb
 # ─────────────────────────────────────────────────────────────
 # 1. CONFIG
 # ─────────────────────────────────────────────────────────────
-BASE_DIR   = r"C:\Users\Kylek\Downloads\Kieron Stuff\Trader-2026"
-INPUT_CSV  = os.path.join(BASE_DIR, "fft_judge_scored.csv")
-OUTPUT_DIR = os.path.join(BASE_DIR, "judge_results")
-MODEL_PATH = os.path.join(BASE_DIR, "MODELS", "judge_model.json")
+# 1. Get the current directory where this specific script lives
+BASE_DIR    = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Build paths relative to the project root
+INPUT_CSV   = os.path.join(BASE_DIR, "fft_judge_scored.csv")
+OUTPUT_DIR  = os.path.join(BASE_DIR, "judge_results")
+MODEL_PATH  = os.path.join(BASE_DIR, "MODELS", "judge_model.json")
+
+# 3. Ensure the results directory is ready
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 # Features the Judge will use
 # model1_prob = ViT confidence
