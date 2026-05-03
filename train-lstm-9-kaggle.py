@@ -13,12 +13,19 @@ import json
 # ─────────────────────────────────────────────────────────────
 # 1. INPUT: Where your uploaded CSV lives
 # Replace 'your-dataset-name' with the actual name of the dataset you uploaded to Kaggle
-INPUT_CSV     = "/kaggle/input/datasets/kieronleng/fft-judge-ready-2/fft_judge_ready.csv"
+# 1. Get the current directory of the script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# 2. OUTPUT: Where Kaggle allows you to write files
-MODEL_PATH    = "/kaggle/working/lstm_model.pt"
-SCALER_PATH   = "/kaggle/working/lstm_scaler.json"
-OUTPUT_DIR    = "/kaggle/working/lstm_results.csv"
+# 2. Define a clear folder for outputs
+# We'll create a 'results' folder to keep things tidy
+RESULTS_DIR = os.path.join(BASE_DIR, "results")
+os.makedirs(RESULTS_DIR, exist_ok=True)
+
+# 3. Update paths to live inside the 'data', 'models', and 'results' folders
+INPUT_CSV   = os.path.join(BASE_DIR, "data", "fft_judge_ready.csv")
+MODEL_PATH  = os.path.join(BASE_DIR, "models", "lstm_model.pt")
+SCALER_PATH = os.path.join(BASE_DIR, "models", "lstm_scaler.json")
+OUTPUT_PATH = os.path.join(RESULTS_DIR, "lstm_results.csv")
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
