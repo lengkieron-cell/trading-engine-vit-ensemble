@@ -40,11 +40,19 @@ from collections import deque
 # ─────────────────────────────────────────────────────────────
 # 1. CONFIG — match your watchdog paths exactly
 # ─────────────────────────────────────────────────────────────
-INPUT_CSV        = "/kaggle/input/datasets/kieronleng/fft-judge-ready-2/fft_judge_ready.csv"
-OUTPUT_CSV       = "/kaggle/working/fft_judge_scored.csv"
-BEST_MODEL       = "/kaggle/input/datasets/kieronleng/vit-model/best.pth"
-LSTM_MODEL_PATH  = "/kaggle/input/datasets/kieronleng/lstm-stuff/lstm_model.pt"
-LSTM_SCALER_PATH = "/kaggle/input/datasets/kieronleng/lstm-stuff/lstm_scaler.json"
+# 1. Get the current directory of the script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Point to a local 'data' and 'models' folder within your project
+INPUT_CSV        = os.path.join(BASE_DIR, "data", "fft_judge_ready.csv")
+OUTPUT_CSV       = os.path.join(BASE_DIR, "data", "fft_judge_scored.csv")
+
+# 3. Point to the 'models' folder for your weights and scalers
+BEST_MODEL       = os.path.join(BASE_DIR, "models", "best.pth")
+LSTM_MODEL_PATH  = os.path.join(BASE_DIR, "models", "lstm_model.pt")
+LSTM_SCALER_PATH = os.path.join(BASE_DIR, "models", "lstm_scaler.json")
+
+# 4. Standard parameters (no changes needed)
 JUDGE_THRESHOLD  = 0.10
 LOOKBACK         = 100
 LSTM_SEQ_LEN     = 10
